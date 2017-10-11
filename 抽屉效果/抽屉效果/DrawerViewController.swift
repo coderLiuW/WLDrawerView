@@ -72,7 +72,7 @@ class DrawerViewController: UIViewController {
     func edgPanGesture(_ pan: UIScreenEdgePanGestureRecognizer) {
         
         let offsetX = pan.translation(in: pan.view).x
-        
+        print(offsetX)
         if pan.state == UIGestureRecognizerState.changed && offsetX <= maxWidth {
             
             mainVC?.view.transform = CGAffineTransform(translationX: max(offsetX, 0), y: 0)
@@ -97,6 +97,8 @@ class DrawerViewController: UIViewController {
     func panCloseLeftMenu(_ pan: UIPanGestureRecognizer) {
         
         let offsetX = pan.translation(in: pan.view).x
+        
+        print(offsetX)
         if offsetX > 0 {return}
         
         if pan.state == UIGestureRecognizerState.changed && offsetX >= -maxWidth {
@@ -108,7 +110,7 @@ class DrawerViewController: UIViewController {
             
         } else if pan.state == UIGestureRecognizerState.ended || pan.state == UIGestureRecognizerState.cancelled || pan.state == UIGestureRecognizerState.failed {
             
-            if offsetX > screenW * 0.5 {
+            if offsetX > -screenW * 0.5 {
                 
                 openLeftMenu()
                 
@@ -175,5 +177,7 @@ class DrawerViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+
 
 }
